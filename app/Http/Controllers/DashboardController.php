@@ -25,11 +25,22 @@ class DashboardController extends Controller
 
     public function saveProfile(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'password' => 'nullable|string|confirmed',
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required|string|max:100',
+                'email' => 'required|email|max:50',
+                'password' => 'nullable|string|confirmed',
+            ],
+            [
+                'name.required' => 'Nama tidak boleh kosong',
+                'name.string' => 'Nama harus berupa string',
+                'name.max' => 'Nama tidak boleh lebih dari 100 karakter',
+                'email.email' => 'Format email tidak valid',
+                'email.max' => 'Email tidak boleh lebih dari 50 karakter',
+                'email.required' => 'Email tidak boleh kosong',
+                'password.confirmed' => 'Konfirmasi password tidak sesuai',
+            ]
+        );
 
         if ($validated['password']) {
             $validated['password'] = bcrypt($validated['password']);
