@@ -7,7 +7,7 @@
                     <i class="ti ti-menu-2"></i>
                 </a>
             </li>
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <a class="nav-link text-hover-primary" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <iconify-icon icon="solar:bell-linear" class="fs-6"></iconify-icon>
@@ -23,14 +23,14 @@
                         </a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
         </ul>
         <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="/assets/images/user-2.jpg" alt="" width="35" height="35"
+                        <img src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}" alt="" width="35" height="35"
                             class="rounded-circle">
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">

@@ -22,4 +22,6 @@ Route::controller(DashboardController::class)
     ->middleware('auth')
     ->group(function (): void {
         Route::get('dashboard', 'index')->name('dashboard');
+        Route::get('profile', 'profile')->name('profile');
+        Route::post('profile', 'saveProfile')->name('profile.update');
     });
