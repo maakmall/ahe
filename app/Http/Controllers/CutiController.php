@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CutiStatusMail;
 use App\Models\Cuti;
 use App\Models\Siswa;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class CutiController extends Controller
 {
@@ -112,9 +114,10 @@ class CutiController extends Controller
         return back()->with('success', 'Cuti berhasil ditolak');
     }
 
-    public function sendEmail(): RedirectResponse
+    public function sendEmail(Cuti $cuti): RedirectResponse
     {
-        // Logic to send email
+        Mail::to($cuti->siswa->email)->send(new CutiStatusMail($cuti));
+
         return back()->with('success', 'Email berhasil dikirim');
     }
 

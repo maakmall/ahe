@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PendaftaranStatusMail;
 use App\Models\Jadwal;
 use App\Models\Pendaftaran;
 use App\Models\PendaftaranJadwal;
@@ -10,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -293,6 +295,8 @@ class PendaftaranController extends Controller
 
     public function sendEmail(Pendaftaran $pendaftaran): RedirectResponse
     {
+        Mail::to($pendaftaran->siswa->email)->send(new PendaftaranStatusMail($pendaftaran));
+
         return back()->with('success', 'Email berhasil dikirim');
     }
 
