@@ -317,16 +317,4 @@ class PendaftaranController extends Controller
             return back()->with('error', 'Pendaftaran gagal dihapus');
         }
     }
-
-    // Pendaftaran Ulang
-
-    public function reregister(): View
-    {
-        return view('pendaftaran.reregister', [
-            'title' => 'Pendaftaran Ulang',
-            'registrations' => Pendaftaran::with('siswa')->reregister()->orderByDesc('tanggal')->get()
-        ]);
-    }
-
-    public function doReregister(Request $request) {}
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\PendaftaranUlangController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 
@@ -42,5 +43,12 @@ Route::middleware('auth')->group(function () {
         Route::get('pendaftaran-ulang/tambah', 'create')->name('reregistration.create');
         Route::get('pendaftaran-ulang/{pendaftaran}', 'show')->name('reregistration.show');
         Route::post('pendaftaran-ulang', 'doReregister')->name('reregistration.store');
+    });
+
+    Route::controller(PendaftaranUlangController::class)->group(function () {    
+        Route::get('pendaftaran-ulang', 'index')->name('reregistration');
+        Route::get('pendaftaran-ulang/tambah', 'create')->name('reregistration.create');
+        Route::get('pendaftaran-ulang/{pendaftaran}', 'show')->name('reregistration.show');
+        Route::post('pendaftaran-ulang', 'store')->name('reregistration.store');
     });
 });

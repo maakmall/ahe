@@ -4,7 +4,9 @@
     <div class="card card-body">
         <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title mb-0 fw-semibold">Pendaftaran Ulang</h5>
-            <a href="{{  }}" class="btn btn-primary">Daftar Ulang</a>
+            <a href="{{ route('reregistration.create') }}" class="btn btn-primary">
+                Daftar Ulang
+            </a>
         </div>
     </div>
 
