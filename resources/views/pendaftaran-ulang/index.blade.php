@@ -20,9 +20,9 @@
                         <thead>
                             <tr>
                                 <th scope="col" class="text-dark fw-normal ps-0">Siswa</th>
-                                <th scope="col" class="text-dark fw-normal">No. WhatsApp</th>
-                                <th scope="col" class="text-dark fw-normal">Status</th>
-                                <th scope="col" class="text-dark fw-normal">Detail</th>
+                                <th scope="col" class="text-dark fw-normal text-center">No. WhatsApp</th>
+                                <th scope="col" class="text-dark fw-normal text-center">Status</th>
+                                <th scope="col" class="text-dark fw-normal text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,10 +43,10 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <span>{{ $registration->siswa->no_wa }}</span>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         @php
                                             $color = match ($registration->status) {
                                                 'Pending' => 'info',
@@ -59,9 +59,18 @@
                                             {{ $registration->status }}
                                         </span>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <a href="{{ route('reregistration.show', ['pendaftaran' => $registration]) }}"
-                                            class="btn btn-dark">Lihat</s>
+                                            class="btn btn-dark">Lihat</a>
+                                        <a href="{{ route('reregistration.edit', ['pendaftaran' => $registration]) }}"
+                                            class="btn btn-success">Edit</a>
+                                        <form
+                                            action="{{ route('reregistration.destroy', ['pendaftaran' => $registration]) }}"
+                                            method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger has-confirmation">Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -6,7 +6,7 @@
         <div class="row align-items-center">
             <div class="col-12">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h4 class="card-title mb-0 fw-semibold">Detail Pendaftaran</h4>
+                    <h4 class="card-title mb-0 fw-semibold">{{ $title }}</h4>
                     <div class="d-flex">
                         @if ($registration->status == 'Pending')
                             <form action="{{ route('registration.approve', $registration->id) }}" method="POST">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card mb-md-0">
                 <div class="card-body">
                     <div class="mb-3">
                         <p class="text-dark"><b>Metode Pembayaran</b></p>
@@ -178,11 +178,23 @@
                 </div>
             </div>
             @if ($registration->jadwal->isNotEmpty())
-                <div class="card">
+                <div class="card mb-0">
                     <div class="card-body">
                         <h6 class="card-title mb-4 fs-4">{{ $registration->jadwal->first()->hari }}</h6>
                         <ol class="list-group">
                             @foreach ($registration->jadwal as $jadwal)
+                                <li class="list-group-item m-0">{{ $jadwal->jam }}</li>
+                            @endforeach
+                        </ol>
+                    </div>
+                </div>
+            @endif
+            @if (isset($schedules) && $schedules->jadwal->isNotEmpty())
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <h6 class="card-title mb-4 fs-4">{{ $schedules->jadwal->first()->hari }}</h6>
+                        <ol class="list-group">
+                            @foreach ($schedules->jadwal as $jadwal)
                                 <li class="list-group-item m-0">{{ $jadwal->jam }}</li>
                             @endforeach
                         </ol>

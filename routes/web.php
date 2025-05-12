@@ -50,7 +50,10 @@ Route::middleware('auth')->group(function () {
         Route::get('pendaftaran-ulang', 'index')->name('reregistration');
         Route::get('pendaftaran-ulang/tambah', 'create')->name('reregistration.create');
         Route::get('pendaftaran-ulang/{pendaftaran}', 'show')->name('reregistration.show');
+        Route::get('pendaftaran-ulang/{pendaftaran}/edit', 'edit')->name('reregistration.edit');
+        Route::put('pendaftaran-ulang/{pendaftaran}', 'update')->name('reregistration.update');
         Route::post('pendaftaran-ulang', 'store')->name('reregistration.store');
+        Route::delete('pendaftaran-ulang/{pendaftaran}', 'destroy')->name('reregistration.destroy');
     });
 
     Route::controller(CutiController::class)->group(function () {    

@@ -101,6 +101,8 @@ class CutiController extends Controller
     public function approve(Cuti $cuti): RedirectResponse
     {
         $cuti->update(['status' => 'Disetujui']);
+        $cuti->siswa()->update(['status' => 'Non Aktif']);
+        
         return back()->with('success', 'Cuti berhasil disetujui');
     }
 
