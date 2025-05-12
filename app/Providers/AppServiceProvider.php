@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Pendaftaran;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $registrations = Pendaftaran::select('daftar_ulang', 'status')->pending()->get();
+
+        View::share(
+            'registrationCount',
+            $registrations->where('daftar_ulang', false)->count()
+        );
+        
+        View::share(
+            'reregistrationCount',
+            $registrations->where('daftar_ulang', true)->count()
+        );
     }
 }

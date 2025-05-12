@@ -42,14 +42,13 @@
         .sidebar-link:hover {
             color: #e9eff5 !important;
         }
-
-
     </style>
 </head>
 
 <body>
     <!--  Body Wrapper -->
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
 
         @include('partials.sidebar')
         <!--  Main wrapper -->
@@ -82,6 +81,38 @@
             })
         </script>
     @endif
+
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    @endif
+
+    <script>
+        $(document).ready(function() {
+            $('.has-confirmation').on('click', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Konfirmasi',
+                    text: 'Apakah Anda yakin?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya',
+                    cancelButtonText: 'Tidak'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).closest('form').submit();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
