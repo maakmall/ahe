@@ -7,10 +7,10 @@
             <form method="POST" action="{{ route('profile.update') }}">
                 @csrf
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nama</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                        name="name" value="{{ old('name', $user->name) }}">
-                    @error('name')
+                    <label for="nama" class="form-label">Nama</label>
+                    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
+                        name="nama" value="{{ old('name', $user->nama) }}">
+                    @error('nama')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
