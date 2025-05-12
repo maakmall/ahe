@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pendaftaran;
 use App\Models\Siswa;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\RedirectResponse;
@@ -13,6 +14,7 @@ class DashboardController extends Controller
     public function index(): View
     {
         $student = Siswa::select('status')->get();
+        $registration = Pendaftaran::select('info')->initial()->get()->groupBy('info');
 
         return view('dashboard.index', [
             'title' => 'Dashboard',
@@ -20,6 +22,7 @@ class DashboardController extends Controller
             'student' => $student->count(),
             'activeStudent' => $student->where('status', 'Aktif')->count(),
             'inactiveStudent' => $student->where('status', 'Non Aktif')->count(),
+            'registration' => $registration
         ]);
     }
 
