@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
+use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -10,8 +12,14 @@ class DashboardController extends Controller
 {
     public function index(): View
     {
+        $student = Siswa::select('status')->get();
+
         return view('dashboard.index', [
-            'title' => 'Dashboard'
+            'title' => 'Dashboard',
+            'quote' => Inspiring::quotes()->random(),
+            'student' => $student->count(),
+            'activeStudent' => $student->where('status', 'Aktif')->count(),
+            'inactiveStudent' => $student->where('status', 'Non Aktif')->count(),
         ]);
     }
 
