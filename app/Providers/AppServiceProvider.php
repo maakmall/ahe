@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Cuti;
 use App\Models\Pendaftaran;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -31,6 +32,11 @@ class AppServiceProvider extends ServiceProvider
         View::share(
             'reregistrationCount',
             $registrations->where('daftar_ulang', true)->count()
+        );
+
+        View::share(
+            'leaveCount',
+            Cuti::select('status')->pending()->count()
         );
     }
 }

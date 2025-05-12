@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\CutiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PendaftaranUlangController;
@@ -50,5 +51,19 @@ Route::middleware('auth')->group(function () {
         Route::get('pendaftaran-ulang/tambah', 'create')->name('reregistration.create');
         Route::get('pendaftaran-ulang/{pendaftaran}', 'show')->name('reregistration.show');
         Route::post('pendaftaran-ulang', 'store')->name('reregistration.store');
+    });
+
+    Route::controller(CutiController::class)->group(function () {    
+        Route::get('cuti', 'index')->name('leave');
+        Route::get('cuti/tambah', 'create')->name('leave.create');
+        Route::get('cuti/{cuti}', 'show')->name('leave.show');
+        Route::delete('cuti/{cuti}', 'destroy')->name('leave.destroy');
+        Route::post('cuti', 'store')->name('leave.store');
+        Route::get('cuti/{cuti}/edit', 'edit')->name('leave.edit');
+        Route::put('cuti/{cuti}', 'update')->name('leave.update');
+        Route::put('cuti/{cuti}/terima', 'approve')->name('leave.approve');
+        Route::put('cuti/{cuti}/tolak', 'reject')->name('leave.reject');
+        Route::get('cuti/{cuti}/surat-cuti', 'letter')->name('leave.letter');
+        Route::post('cuti/{cuti}/email', 'sendEmail')->name('leave.email');
     });
 });

@@ -63,17 +63,17 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link text-hover-primary justify-content-between"
-                        href="{{ route('reregistration') }}" aria-expanded="false">
+                    <a @class(["sidebar-link text-hover-primary justify-content-between", "active" => request()->routeIs('leave.*')])
+                        href="{{ route('leave') }}" aria-expanded="false">
                         <div class="d-flex align-items-center gap-3">
                             <span class="d-flex">
                                 <iconify-icon icon="solar:user-id-line-duotone"></iconify-icon>
                             </span>
                             <span class="hide-menu">Cuti</span>
                         </div>
-                        @if ($reregistrationCount)
+                        @if ($leaveCount)
                             <span class="hide-menu badge text-bg-success fs-1 py-1">
-                                {{ $reregistrationCount }}
+                                {{ $leaveCount }}
                             </span>
                         @endif
                     </a>
