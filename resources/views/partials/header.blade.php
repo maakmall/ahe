@@ -30,7 +30,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}" alt="" width="35" height="35"
+                        <img src="https://ui-avatars.com/api/?name={{ auth()->user()->nama }}" alt="" width="35" height="35"
                             class="rounded-circle">
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
