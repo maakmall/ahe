@@ -122,7 +122,7 @@ class PendaftaranController extends Controller
             // 3. Handle upload file
             $buktiPembayaranPath = null;
             if ($request->hasFile('bukti_pembayaran')) {
-                $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti-pembayaran', 'public');
+                $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti-pembayaran');
             }
 
             // 4. Insert pendaftaran
@@ -154,7 +154,7 @@ class PendaftaranController extends Controller
                 ->with('success', 'Pendaftaran berhasil ditambah');
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e->getMessage());
+
             return back()->with('error', 'Gagal menyimpan data');
         }
     }
@@ -239,11 +239,11 @@ class PendaftaranController extends Controller
             $buktiPembayaranPath = $pendaftaran->bukti_pembayaran;
             if ($request->hasFile('bukti_pembayaran')) {
                 // hapus yang lama
-                if ($buktiPembayaranPath && Storage::disk('public')->exists($buktiPembayaranPath)) {
-                    Storage::disk('public')->delete($buktiPembayaranPath);
+                if ($buktiPembayaranPath && Storage::disk()->exists($buktiPembayaranPath)) {
+                    Storage::disk()->delete($buktiPembayaranPath);
                 }
                 // simpan baru
-                $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti-pembayaran', 'public');
+                $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti-pembayaran');
             }
 
             // 3. Update data pendaftaran
@@ -305,8 +305,8 @@ class PendaftaranController extends Controller
         DB::beginTransaction();
         try {
             // Hapus bukti pembayaran
-            if ($pendaftaran->bukti_pembayaran && Storage::disk('public')->exists($pendaftaran->bukti_pembayaran)) {
-                Storage::disk('public')->delete($pendaftaran->bukti_pembayaran);
+            if ($pendaftaran->bukti_pembayaran && Storage::disk()->exists($pendaftaran->bukti_pembayaran)) {
+                Storage::disk()->delete($pendaftaran->bukti_pembayaran);
             }
 
             // Hapus pendaftaran, siswa, dan jadwal

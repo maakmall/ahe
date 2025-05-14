@@ -76,11 +76,11 @@
             </div>
             <div class="card mb-md-0">
                 <div class="card-body">
-                    <div class="mb-3">
+                    <div @class(["mb-3" => $registration->surat_cuti])>
                         <p class="text-dark"><b>Metode Pembayaran</b></p>
-                        <p>{{ $registration->metode_pembayaran }}</p>
+                        <p class="mb-0">{{ $registration->metode_pembayaran }}</p>
                     </div>
-                    @if ($registration->daftar_ulang)
+                    @if ($registration->daftar_ulang && $registration->surat_cuti)
                         <div class="mb-3">
                             <p class="text-dark"><b>Surat Cuti</b></p>
                             <a href="{{ Storage::url($registration->surat_cuti) }}" target="_blank">
@@ -89,12 +89,14 @@
                             </a>
                         </div>
                     @endif
-                    <div>
-                        <p class="text-dark"><b>Bukti Pembayaran</b></p>
-                        <img src="{{ Storage::url($registration->bukti_pembayaran) }}" alt="Bukti Pembayaran"
-                            class="img-fluid rounded" style="max-width: 100%; height: auto;"
-                            onerror="this.onerror=null; this.src='/assets/images/no-image.png'">
-                    </div>
+                    @if ($registration->bukti_pembayaran)
+                        <div>
+                            <p class="text-dark"><b>Bukti Pembayaran</b></p>
+                            <img src="{{ Storage::url($registration->bukti_pembayaran) }}" alt="Bukti Pembayaran"
+                                class="img-fluid rounded" style="max-width: 100%; height: auto;"
+                                onerror="this.onerror=null; this.src='/assets/images/no-image.png'">
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

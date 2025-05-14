@@ -83,12 +83,12 @@ class PendaftaranUlangController extends Controller
 
         $buktiPembayaranPath = null;
         if ($request->hasFile('bukti_pembayaran')) {
-            $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti-pembayaran', 'public');
+            $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti-pembayaran');
         }
 
         $suratCutiPath = null;
         if ($request->hasFile('bukti_pembayaran')) {
-            $suratCutiPath = $request->file('surat_cuti')->store('surat-cuti', 'public');
+            $suratCutiPath = $request->file('surat_cuti')->store('surat-cuti');
         }
 
         $prefix = 'DU';
@@ -153,22 +153,22 @@ class PendaftaranUlangController extends Controller
         $buktiPembayaranPath = $pendaftaran->bukti_pembayaran;
         if ($request->hasFile('bukti_pembayaran')) {
             // hapus yang lama
-            if ($buktiPembayaranPath && Storage::disk('public')->exists($buktiPembayaranPath)) {
-                Storage::disk('public')->delete($buktiPembayaranPath);
+            if ($buktiPembayaranPath && Storage::disk()->exists($buktiPembayaranPath)) {
+                Storage::disk()->delete($buktiPembayaranPath);
             }
             // simpan baru
-            $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti-pembayaran', 'public');
+            $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti-pembayaran');
         }
 
         // Handle file surat cuti (optional)
         $suratCutiPath = $pendaftaran->surat_cuti;
         if ($request->hasFile('surat_cuti')) {
             // hapus yang lama
-            if ($suratCutiPath && Storage::disk('public')->exists($suratCutiPath)) {
-                Storage::disk('public')->delete($suratCutiPath);
+            if ($suratCutiPath && Storage::disk()->exists($suratCutiPath)) {
+                Storage::disk()->delete($suratCutiPath);
             }
             // simpan baru
-            $suratCutiPath = $request->file('surat_cuti')->store('surat-cuti', 'public');
+            $suratCutiPath = $request->file('surat_cuti')->store('surat-cuti');
         }
 
         $validated['bukti_pembayaran'] = $buktiPembayaranPath;
@@ -183,12 +183,12 @@ class PendaftaranUlangController extends Controller
 
     public function destroy(Pendaftaran $pendaftaran): RedirectResponse
     {
-        if ($pendaftaran->bukti_pembayaran && Storage::disk('public')->exists($pendaftaran->bukti_pembayaran)) {
-            Storage::disk('public')->delete($pendaftaran->bukti_pembayaran);
+        if ($pendaftaran->bukti_pembayaran && Storage::disk()->exists($pendaftaran->bukti_pembayaran)) {
+            Storage::disk()->delete($pendaftaran->bukti_pembayaran);
         }
 
-        if ($pendaftaran->surat_cuti && Storage::disk('public')->exists($pendaftaran->surat_cuti)) {
-            Storage::disk('public')->delete($pendaftaran->surat_cuti);
+        if ($pendaftaran->surat_cuti && Storage::disk()->exists($pendaftaran->surat_cuti)) {
+            Storage::disk()->delete($pendaftaran->surat_cuti);
         }
 
         $pendaftaran->delete();
