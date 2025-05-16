@@ -51,26 +51,37 @@ class PendaftaranController extends Controller
                 'tempat_lahir' => ['required', 'string', 'max:50'],
                 'tanggal_lahir' => ['required', 'date'],
                 'nama_orang_tua' => ['required', 'string', 'max:100'],
-                'kelas' => ['required', 'string', 'max:15'],
+                'kelas' => ['required', 'max:15'],
                 'sekolah' => ['required', 'string', 'max:50'],
                 'no_wa' => ['required', 'string', 'max:15'],
                 'email' => ['required', 'email', 'max:50'],
                 'alamat' => ['required', 'string'],
-                'info' => ['nullable', 'in:Teman,Media Sosial,Brosur,Lainnya'],
+                'info' => ['required', 'in:Teman,Media Sosial,Brosur,Lainnya'],
                 'metode_pembayaran' => ['required', 'in:Dana,Transfer,QRIS'],
-                'bukti_pembayaran' => ['nullable', 'image', 'max:2048'],
+                'bukti_pembayaran' => ['required_if:from_front,1', 'image', 'max:2048'],
                 'hari' => ['required', 'in:Senin Rabu Jumat,Selasa Kamis Sabtu'],
                 'jam' => ['required', 'array'],
                 'jam.*' => ['required', 'string'],
             ],
             [
                 'nama_lengkap.required' => 'Nama lengkap wajib diisi',
+                'nama_lengkap.string' => 'Nama lengkap tidak valid',
+                'nama_lengkap.max' => 'Nama lengkap maksimal 100 karakter',
                 'nama_panggilan.required' => 'Nama panggilan wajib diisi',
+                'nama_panggilan.string' => 'Nama panggilan tidak valid',
+                'nama_panggilan.max' => 'Nama panggilan maksimal 20 karakter',
                 'jenis_kelamin.required' => 'Pilih jenis kelamin dulu ya',
+                'jenis_kelamin.in' => 'Jenis kelamin tidak valid',
                 'tempat_lahir.required' => 'Tempat lahir wajib diisi',
+                'tempat_lahir.string' => 'Tempat lahir tidak valid',
+                'tempat_lahir.max' => 'Tempat lahir maksimal 50 karakter',
                 'tanggal_lahir.required' => 'Tanggal lahir wajib diisi',
+                'tanggal_lahir.date' => 'Tanggal lahir tidak valid',
                 'nama_orang_tua.required' => 'Nama orang tua wajib diisi',
-                'kelas.required' => 'Isi kelas lo sekarang',
+                'nama_orang_tua.string' => 'Nama orang tua tidak valid',
+                'nama_orang_tua.max' => 'Nama orang tua maksimal 100 karakter',
+                'kelas.required' => 'Kelas wajib diisi',
+                'kelas.max' => 'Kelas maksimal 15 karakter',
                 'sekolah.required' => 'Nama sekolah wajib diisi',
                 'no_wa.required' => 'Nomor WA wajib diisi',
                 'email.required' => 'Email wajib diisi',
@@ -80,6 +91,8 @@ class PendaftaranController extends Controller
                 'hari.required' => 'Hari bimbel harus dipilih',
                 'jam.required' => 'Pilih jam bimbel minimal satu',
                 'jam.*.required' => 'Jam bimbel tidak boleh kosong',
+                'info.required' => 'Info tidak boleh kosong',
+                'bukti_pembayaran.required_if' => 'Bukti pembayaran wajib diisi',
                 'bukti_pembayaran.image' => 'Bukti pembayaran harus JPG atau PNG',
                 'bukti_pembayaran.max' => 'Ukuran bukti pembayaran maksimal 2MB ya.',
             ]
@@ -148,6 +161,12 @@ class PendaftaranController extends Controller
             }
 
             DB::commit();
+
+            if ($request->from_front) {
+                return redirect()
+                    ->route('home.register')
+                    ->with('success', 'Pendaftaran berhasil');
+            }
 
             return redirect()
                 ->route('registration')

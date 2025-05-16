@@ -33,18 +33,13 @@ Route::middleware('auth')->group(function () {
         Route::get('pendaftaran', 'index')->name('registration');
         Route::get('pendaftaran/tambah', 'create')->name('registration.create');
         Route::get('pendaftaran/{pendaftaran}', 'show')->name('registration.show');
-        Route::post('pendaftaran', 'store')->name('registration.store');
+        Route::post('pendaftaran', 'store')->name('registration.store')->withoutMiddleware('auth');
         Route::put('pendaftaran/{pendaftaran}', 'update')->name('registration.update');
         Route::delete('pendaftaran/{pendaftaran}', 'destroy')->name('registration.destroy');
         Route::get('pendaftaran/{pendaftaran}/edit', 'edit')->name('registration.edit');
         Route::put('pendaftaran/{pendaftaran}/terima', 'approve')->name('registration.approve');
         Route::put('pendaftaran/{pendaftaran}/tolak', 'reject')->name('registration.reject');
         Route::post('pendaftaran/{pendaftaran}/email', 'sendEmail')->name('registration.email');
-        
-        Route::get('pendaftaran-ulang', 'reregister')->name('reregistration');
-        Route::get('pendaftaran-ulang/tambah', 'create')->name('reregistration.create');
-        Route::get('pendaftaran-ulang/{pendaftaran}', 'show')->name('reregistration.show');
-        Route::post('pendaftaran-ulang', 'doReregister')->name('reregistration.store');
     });
 
     Route::controller(PendaftaranUlangController::class)->group(function () {    
@@ -74,4 +69,5 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(HomeController::class)->group(function() {
     Route::get('/', 'index');
+    Route::get('/form-pendaftaran', 'register')->name('home.register');
 });

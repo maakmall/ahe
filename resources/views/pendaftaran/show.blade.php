@@ -78,7 +78,7 @@
                 <div class="card-body">
                     <div @class(["mb-3" => $registration->surat_cuti])>
                         <p class="text-dark"><b>Metode Pembayaran</b></p>
-                        <p class="mb-0">{{ $registration->metode_pembayaran }}</p>
+                        <p @class(["mb-0" => !$registration->bukti_pembayaran && !$registration->surat_cuti ])>{{ $registration->metode_pembayaran }}</p>
                     </div>
                     @if ($registration->daftar_ulang && $registration->surat_cuti)
                         <div class="mb-3">
