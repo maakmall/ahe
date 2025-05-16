@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PendaftaranUlangController;
 use Illuminate\Support\Facades\Route;
@@ -69,4 +70,8 @@ Route::middleware('auth')->group(function () {
         Route::get('cuti/{cuti}/surat-cuti', 'letter')->name('leave.letter');
         Route::post('cuti/{cuti}/email', 'sendEmail')->name('leave.email');
     });
+});
+
+Route::controller(HomeController::class)->group(function() {
+    Route::get('/', 'index');
 });
