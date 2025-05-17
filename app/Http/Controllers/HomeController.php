@@ -29,6 +29,14 @@ class HomeController extends Controller
         ]);
     }
 
+    public function reregister()
+    {
+        return view('reregister', [
+            'title' => 'Pendaftaran Ulang',
+            'siswaList' => Siswa::all()
+        ]);
+    }
+
     public function getStudent($id)
     {
         $siswa = Siswa::findOrFail($id);
@@ -40,15 +48,18 @@ class HomeController extends Controller
     {
         $search = $request->get('q', '');
 
-        $siswa = Siswa::where('status', 'Aktif')
-            ->where(function ($query) use ($search) {
-                $query->where('nama_lengkap', 'like', "%{$search}%")
-                    ->orWhere('nama_panggilan', 'like', "%{$search}%")
-                    ->orWhere('kelas', 'like', "%{$search}%");
-            })
-            ->limit(10)
-            ->get(['id', 'nama_lengkap', 'nama_panggilan', 'jenis_kelamin', 'kelas']);
+        $siswa = Siswa::where(function ($query) use ($search) {
+            $query->where('nama_lengkap', 'like', "%{$search}%")
+                ->orWhere('nama_panggilan', 'like', "%{$search}%")
+                ->orWhere('kelas', 'like', "%{$search}%");
+        })->limit(10);
 
-        return response()->json($siswa);
+        if ($request->boolean('reregister') == true) {
+            $siswa->where('status', 'Non Aktif');
+        } else {
+            $siswa->where('status', 'Aktif');
+        }
+
+        return response()->json($siswa->get(['id', 'nama_lengkap', 'nama_panggilan', 'jenis_kelamin', 'kelas']));
     }
 }

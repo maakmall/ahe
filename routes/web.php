@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
         Route::get('pendaftaran-ulang/{pendaftaran}', 'show')->name('reregistration.show');
         Route::get('pendaftaran-ulang/{pendaftaran}/edit', 'edit')->name('reregistration.edit');
         Route::put('pendaftaran-ulang/{pendaftaran}', 'update')->name('reregistration.update');
-        Route::post('pendaftaran-ulang', 'store')->name('reregistration.store');
+        Route::post('pendaftaran-ulang', 'store')->name('reregistration.store')->withoutMiddleware('auth');
         Route::delete('pendaftaran-ulang/{pendaftaran}', 'destroy')->name('reregistration.destroy');
     });
 
@@ -70,6 +70,7 @@ Route::middleware('auth')->group(function () {
 Route::controller(HomeController::class)->group(function() {
     Route::get('/', 'index');
     Route::get('/form-pendaftaran', 'register')->name('home.register');
+    Route::get('/form-pendaftaran-ulang', 'reregister')->name('home.reregister');
     Route::get('/pengajuan-cuti', 'leave')->name('home.leave');
     Route::get('/siswa/{id}', 'getStudent');
     Route::get('/ajax/siswa-search', 'searchStudent');

@@ -52,16 +52,18 @@ class PendaftaranUlangController extends Controller
             [
                 'id_siswa' => 'required|exists:siswa,id',
                 'metode_pembayaran' => ['required', 'in:Dana,Transfer,QRIS'],
-                'bukti_pembayaran' => ['nullable', 'image', 'max:2048'],
-                'surat_cuti' => ['nullable', 'file', 'max:2048'],
+                'bukti_pembayaran' => ['required_if:from_front,1', 'image', 'max:2048'],
+                'surat_cuti' => ['required_if:from_front,1', 'file', 'max:2048'],
             ],
             [
                 'id_siswa.required' => 'Siswa belum dipilih',
                 'id_siswa.exists' => 'Siswa tidak valid',
                 'metode_pembayaran.required' => 'Pilih metode pembayarannya dulu',
                 'metode_pembayaran.in' => 'Metode pembayaran tidak valid',
+                'bukti_pembayaran.required_if' => 'Bukti pembayaran harus diisi',
                 'bukti_pembayaran.image' => 'Bukti pembayaran harus JPG atau PNG',
                 'bukti_pembayaran.max' => 'Ukuran bukti pembayaran maksimal 2MB',
+                'surat_cuti.required_if' => 'Surat cuti harus diisi',
                 'surat_cuti.file' => 'Surat cuti harus berupa format file',
                 'surat_cuti.max' => 'Ukuran surat cuti maksimal 2MB',
             ]
@@ -114,9 +116,11 @@ class PendaftaranUlangController extends Controller
 
         Pendaftaran::create($validated);
 
+        $route = $request->from_front ? 'home.reregister': 'reregistration';
+
         return redirect()
-            ->route('reregistration')
-            ->with('success', 'Pendaftaran ulang berhasil ditambahkan');
+            ->route($route)
+            ->with('success', 'Pendaftaran ulang berhasil');
     }
 
     public function edit(Pendaftaran $pendaftaran): View
