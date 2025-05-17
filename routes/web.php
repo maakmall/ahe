@@ -57,7 +57,7 @@ Route::middleware('auth')->group(function () {
         Route::get('cuti/tambah', 'create')->name('leave.create');
         Route::get('cuti/{cuti}', 'show')->name('leave.show');
         Route::delete('cuti/{cuti}', 'destroy')->name('leave.destroy');
-        Route::post('cuti', 'store')->name('leave.store');
+        Route::post('cuti', 'store')->name('leave.store')->withoutMiddleware('auth');
         Route::get('cuti/{cuti}/edit', 'edit')->name('leave.edit');
         Route::put('cuti/{cuti}', 'update')->name('leave.update');
         Route::put('cuti/{cuti}/terima', 'approve')->name('leave.approve');
@@ -70,4 +70,7 @@ Route::middleware('auth')->group(function () {
 Route::controller(HomeController::class)->group(function() {
     Route::get('/', 'index');
     Route::get('/form-pendaftaran', 'register')->name('home.register');
+    Route::get('/pengajuan-cuti', 'leave')->name('home.leave');
+    Route::get('/siswa/{id}', 'getStudent');
+    Route::get('/ajax/siswa-search', 'searchStudent');
 });

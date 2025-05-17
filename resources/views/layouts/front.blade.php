@@ -26,7 +26,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-
+    @stack('styles')
     <!-- Template Stylesheet -->
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
@@ -87,6 +87,7 @@
 
     <!-- Template Javascript -->
     <script src="/assets/js/main.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

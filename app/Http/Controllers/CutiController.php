@@ -70,7 +70,9 @@ class CutiController extends Controller
 
         Cuti::create($validated);
 
-        return redirect()->route('leave')->with('success', 'Cuti berhasil diajukan');
+        $route = $request->from_front ? 'home.leave' : 'leave';
+
+        return redirect()->route($route)->with('success', 'Cuti berhasil diajukan');
     }
 
     public function update(Request $request, Cuti $cuti): RedirectResponse
