@@ -10,4 +10,9 @@ class PendaftaranJadwal extends Model
     public $timestamps = false;
 
     protected $guarded = ['id'];
+
+    public function pendaftaran()
+    {
+        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
+    }
 }

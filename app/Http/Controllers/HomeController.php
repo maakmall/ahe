@@ -62,4 +62,34 @@ class HomeController extends Controller
 
         return response()->json($siswa->get(['id', 'nama_lengkap', 'nama_panggilan', 'jenis_kelamin', 'kelas']));
     }
+
+    public function schedule()
+    {
+        // Ambil semua jadwal beserta siswa-siswanya
+        $jadwal_senin_rabu_jumat = Jadwal::with([
+            'pendaftaranJadwal.pendaftaran.siswa' => function ($query) {
+                $query->where('status', 'Aktif');
+            }
+        ])
+            ->where('hari', 'Senin Rabu Jumat')
+            ->orderBy('jam')
+            ->get()
+            ->groupBy('jam');
+
+        $jadwal_selasa_kamis_sabtu = Jadwal::with([
+            'pendaftaranJadwal.pendaftaran.siswa' => function ($query) {
+                $query->where('status', 'Aktif');
+            }
+        ])
+            ->where('hari', 'Selasa Kamis Sabtu')
+            ->orderBy('jam')
+            ->get()
+            ->groupBy('jam');
+
+        return view('schedule', [
+            'title' => 'Jadwal',
+            'srj' => $jadwal_senin_rabu_jumat,
+            'sks' => $jadwal_selasa_kamis_sabtu,
+        ]);
+    }
 }

@@ -74,4 +74,5 @@ Route::controller(HomeController::class)->group(function() {
     Route::get('/pengajuan-cuti', 'leave')->name('home.leave');
     Route::get('/siswa/{id}', 'getStudent');
     Route::get('/ajax/siswa-search', 'searchStudent');
+    Route::get('/jadwal', 'schedule')->name('home.schedule');
 });

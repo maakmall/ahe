@@ -10,4 +10,9 @@ class Jadwal extends Model
     public $timestamps = false;
 
     protected $fillable = ['hari', 'jam'];
+
+    public function pendaftaranJadwal()
+    {
+        return $this->hasMany(PendaftaranJadwal::class, 'id_jadwal');
+    }
 }
