@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PendaftaranUlangController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 
@@ -76,3 +77,5 @@ Route::controller(HomeController::class)->group(function() {
     Route::get('/ajax/siswa-search', 'searchStudent');
     Route::get('/jadwal', 'schedule')->name('home.schedule');
 });
+
+Route::get('/optimize', fn() => Artisan::call('optimize'));
