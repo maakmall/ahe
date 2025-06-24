@@ -42,6 +42,15 @@
         .sidebar-link:hover {
             color: #e9eff5 !important;
         }
+
+        .rotate-180 {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease;
+        }
+
+        .transition-transform {
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 
@@ -63,7 +72,7 @@
     </div>
     <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/sidebarmenu.js"></script>
+    {{-- <script src="/assets/js/sidebarmenu.js"></script> --}}
     <script src="/assets/js/app.min.js"></script>
     <script src="/assets/libs/simplebar/dist/simplebar.js"></script>
     <!-- solar icons -->
