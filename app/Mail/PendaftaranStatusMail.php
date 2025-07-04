@@ -29,7 +29,7 @@ class PendaftaranStatusMail extends Mailable
         $user = Auth::user();
 
         return new Envelope(
-            from: new Address($user->email, $user->nama),
+            from: new Address(config('mail.mailers.smtp.username'), $user->nama . ' ' . config('app.name')),
             subject: 'Pendaftaran Status',
         );
     }
