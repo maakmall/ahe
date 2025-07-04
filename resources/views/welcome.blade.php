@@ -5,7 +5,7 @@
     <div class="container-fluid p-0 mb-5">
         <div class="owl-carousel header-carousel position-relative">
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="/assets/images/carousel-1.jpg" alt="">
+                <img class="img-fluid" src="/assets/images/4.jpg" alt="">
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0, 0, 0, .2);">
                     <div class="container">
                         <div class="row justify-content-start mb-5">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="/assets/images/carousel-2.jpg" alt="">
+                <img class="img-fluid" src="/assets/images/3.jpg" alt="">
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
                     style="background: rgba(0, 0, 0, .2);">
                     <div class="container">
@@ -140,13 +140,13 @@
                 <div class="col-lg-6 about-img wow fadeInUp" data-wow-delay="0.5s">
                     <div class="row">
                         <div class="col-12 text-center">
-                            <img class="img-fluid w-75 rounded-circle bg-light p-3" src="/assets/images/about-1.jpg" alt="">
+                            <img class="img-fluid w-75 rounded-circle bg-light p-3" src="/assets/images/1.jpg" alt="">
                         </div>
                         <div class="col-6 text-start" style="margin-top: -150px;">
-                            <img class="img-fluid w-100 rounded-circle bg-light p-3" src="/assets/images/about-2.jpg" alt="">
+                            <img class="img-fluid w-100 rounded-circle bg-light p-3" src="/assets/images/2.jpg" alt="">
                         </div>
                         <div class="col-6 text-end" style="margin-top: -150px;">
-                            <img class="img-fluid w-100 rounded-circle bg-light p-3" src="/assets/images/about-3.jpg" alt="">
+                            <img class="img-fluid w-100 rounded-circle bg-light p-3" src="/assets/images/3.jpg" alt="">
                         </div>
                     </div>
                 </div>
