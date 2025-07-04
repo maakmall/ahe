@@ -118,9 +118,13 @@ class CutiController extends Controller
 
     public function sendEmail(Cuti $cuti): RedirectResponse
     {
-        Mail::to($cuti->siswa->email)->send(new CutiStatusMail($cuti));
-
-        return back()->with('success', 'Email berhasil dikirim');
+        try {
+            Mail::to($cuti->siswa->email)->send(new CutiStatusMail($cuti));
+    
+            return back()->with('success', 'Email berhasil dikirim');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal mengirim email');
+        }
     }
 
     public function letter(Cuti $cuti)

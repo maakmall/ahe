@@ -326,9 +326,13 @@ class PendaftaranController extends Controller
 
     public function sendEmail(Pendaftaran $pendaftaran): RedirectResponse
     {
-        Mail::to($pendaftaran->siswa->email)->send(new PendaftaranStatusMail($pendaftaran));
-
-        return back()->with('success', 'Email berhasil dikirim');
+        try {
+            Mail::to($pendaftaran->siswa->email)->send(new PendaftaranStatusMail($pendaftaran));
+            
+            return back()->with('success', 'Email berhasil dikirim');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal mengirim email');
+        }
     }
 
     public function destroy(Pendaftaran $pendaftaran): RedirectResponse
