@@ -64,7 +64,9 @@
                     </span>
                     <div>
                         <span>Teman</span>
-                        <h5 class="mt-1 fw-medium mb-0">{{ $registration['Teman']->count() }}</h5>
+                        <h5 class="mt-1 fw-medium mb-0">
+                            {{ isset($registration['Teman']) ? $registration['Teman']->count() : 0 }}
+                        </h5>
                     </div>
                 </div>
             </div>
@@ -75,7 +77,9 @@
                     </span>
                     <div>
                         <span>Media Sosial</span>
-                        <h5 class="mt-1 fw-medium mb-0">{{ $registration['Media Sosial']->count() }}</h5>
+                        <h5 class="mt-1 fw-medium mb-0">
+                            {{ isset($registration['Media Sosial']) ? $registration['Media Sosial']->count() : 0 }}
+                        </h5>
                     </div>
                 </div>
             </div>
@@ -86,7 +90,9 @@
                     </span>
                     <div>
                         <span>Brosur</span>
-                        <h5 class="mt-1 fw-medium mb-0">{{ $registration['Brosur']->count() }}</h5>
+                        <h5 class="mt-1 fw-medium mb-0">
+                            {{ isset($registration['Brosur']) ? $registration['Brosur']->count() : 0 }}
+                        </h5>
                     </div>
                 </div>
             </div>
@@ -97,7 +103,9 @@
                     </span>
                     <div>
                         <span>Lainnya</span>
-                        <h5 class="mt-1 fw-medium mb-0">{{ $registration['Lainnya']->count() }}</h5>
+                        <h5 class="mt-1 fw-medium mb-0">
+                            {{ isset($registration['Lainnya']) ? $registration['Lainnya']->count() : 0 }}
+                        </h5>
                     </div>
                 </div>
             </div>
