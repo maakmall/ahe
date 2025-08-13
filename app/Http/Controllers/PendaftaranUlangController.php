@@ -51,7 +51,7 @@ class PendaftaranUlangController extends Controller
         $validated = $request->validate(
             [
                 'id_siswa' => 'required|exists:siswa,id',
-                'metode_pembayaran' => ['required', 'in:Dana,Transfer,QRIS'],
+                'metode_pembayaran' => ['required', 'in:E-Wallet,Transfer Bank'],
                 'bukti_pembayaran' => ['required_if:from_front,1', 'image', 'max:2048'],
                 'surat_cuti' => ['required_if:from_front,1', 'file', 'max:2048'],
             ],
@@ -137,7 +137,7 @@ class PendaftaranUlangController extends Controller
         $validated = $request->validate(
             [
                 'id_siswa' => 'required|exists:siswa,id',
-                'metode_pembayaran' => ['required', 'in:Dana,Transfer,QRIS'],
+                'metode_pembayaran' => ['required', 'in:E-Wallet,Transfer Bank'],
                 'bukti_pembayaran' => ['nullable', 'image', 'max:2048'],
                 'surat_cuti' => ['nullable', 'file', 'max:2048'],
             ],

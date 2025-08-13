@@ -193,9 +193,8 @@
                             </label>
                             <select class="form-select @error('metode_pembayaran') is-invalid @enderror"
                                 id="metode_pembayaran" name="metode_pembayaran">
-                                <option @selected(old('metode_pembayaran') == 'Dana')>Dana</option>
-                                <option @selected(old('metode_pembayaran') == 'Transfer')>Transfer</option>
-                                <option @selected(old('metode_pembayaran') == 'QRIS')>QRIS</option>
+                                <option @selected(old('metode_pembayaran') == 'E-Wallet')>E-Wallet</option>
+                                <option @selected(old('metode_pembayaran') == 'Transfer Bank')>Transfer Bank</option>
                             </select>
                             @error('metode_pembayaran')
                                 <div class="invalid-feedback">

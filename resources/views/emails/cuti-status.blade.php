@@ -74,8 +74,7 @@
         <p>Dengan hormat,</p>
 
         <p>
-            Kami informasikan bahwa pengajuan cuti atas nama <strong>{{ $cuti->siswa->nama_lengkap }}</strong>
-            telah <strong>{{ $cuti->status }}</strong>.
+            Kami informasikan bahwa pengajuan cuti atas nama <strong>{{ $cuti->siswa->nama_lengkap }}</strong> telah <strong>{{ $cuti->status }}</strong> karena {{ $cuti->status == 'Disetujui' ? 'telah memenuhi persyaratan' : 'tidak memenuhi persyaratan' }}.
         </p>
 
         <div class="status-box {{ $cuti->status === 'Ditolak' ? 'status-rejected' : '' }}">

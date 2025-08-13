@@ -131,15 +131,26 @@
                                                 id="metode_pembayaran"
                                                 name="metode_pembayaran"
                                             >
-                                                <option value="" disabled selected>-- Pilih --</option>
-                                                <option @selected(old('metode_pembayaran') == 'Dana')>Dana</option>
-                                                <option @selected(old('metode_pembayaran') == 'Transfer')>Transfer</option>
-                                                <option @selected(old('metode_pembayaran') == 'QRIS')>QRIS</option>
+                                                <option value="" selected>-- Pilih --</option>
+                                                <option @selected(old('metode_pembayaran') == 'E-Wallet')>E-Wallet</option>
+                                                <option @selected(old('metode_pembayaran') == 'Transfer Bank')>Transfer Bank</option>
                                             </select>
                                             <label for="metode_pembayaran">Metode Pembayaran</label>
                                         </div>
                                         <div class="invalid-feedback d-block">
                                             @error('metode_pembayaran') {{ $message }} @enderror
+                                        </div>
+
+                                        <div id="payment-info" class="mt-3" style="display: none;">
+                                            <div class="p-3 bg-light">
+                                                <h6>Informasi Pembayaran:</h6>
+                                                <ul class="mb-0 small">
+                                                    <li id="payment-type"></li>
+                                                    <li id="payment-name"></li>
+                                                    <li id="payment-account"></li>
+                                                    <li id="payment-amount"></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -261,5 +272,33 @@
     });
 
     $('b[role="presentation"]').hide();
+
+    const paymentInfo = {
+        'E-Wallet': {
+            type: 'E-Wallet : DANA',
+            name: 'Nama : Fitri Anita',
+            account: 'Nomor : 087762651178',
+            amount: 'Nominal : Rp120.000'
+        },
+        'Transfer Bank': {
+            type: 'Bank : BRI',
+            name: 'Nama Rekening : Fitri Anita',
+            account: 'No. Rekening : 386401015106537',
+            amount: 'Nominal : Rp120.000'
+        }
+    };
+
+    $('#metode_pembayaran').on('change', function() {
+        const selected = $(this).val();
+        if (paymentInfo[selected]) {
+            $('#payment-type').text(paymentInfo[selected].type);
+            $('#payment-name').text(paymentInfo[selected].name);
+            $('#payment-account').text(paymentInfo[selected].account);
+            $('#payment-amount').text(paymentInfo[selected].amount);
+            $('#payment-info').show();
+        } else {
+            $('#payment-info').hide();
+        }
+    });
     </script>
 @endpush

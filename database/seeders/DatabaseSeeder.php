@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
             Pendaftaran::create([
                 'id' => $idPendaftaran,
                 'id_siswa' => $siswa->id,
-                'metode_pembayaran' => fake()->randomElement(['Dana', 'Transfer', 'QRIS']),
+                'metode_pembayaran' => fake()->randomElement(['E-Wallet', 'Transfer Bank']),
                 'status' => fake()->randomElement(['Pending', 'Diterima', 'Ditolak']),
                 'tanggal' => now(),
                 'info' => fake()->randomElement(['Teman', 'Media Sosial', 'Brosur', 'Lainnya']),

@@ -13,7 +13,7 @@ return new class extends Migration
             $table->char('id', 13)->primary();
             $table->foreignId('id_siswa')->constrained('siswa')->onDelete('cascade');
             $table->boolean('daftar_ulang')->default(false);
-            $table->enum('metode_pembayaran', ['Dana', 'Transfer', 'QRIS']);
+            $table->enum('metode_pembayaran', ['E-Wallet', 'Transfer Bank']);
             $table->string('bukti_pembayaran', 100)->nullable();
             $table->string('surat_cuti', 100)->nullable();
             $table->enum('status', ['Pending', 'Diterima', 'Ditolak'])->default('Pending');

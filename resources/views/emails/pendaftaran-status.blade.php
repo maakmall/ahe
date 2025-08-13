@@ -71,7 +71,7 @@
 
         <p>
             Kami informasikan bahwa pendaftaran atas nama <strong>{{ $pendaftaran->siswa->nama_lengkap }}</strong>
-            telah <span style="text-transform: lowercase;"><strong>{{ $pendaftaran->status }}</strong></span>.
+            telah <span style="text-transform: lowercase;"><strong>{{ $pendaftaran->status }}</strong></span> karena {{ $pendaftaran->status == 'Diterima' ? 'telah memenuhi persyaratan' : 'tidak memenuhi persyaratan' }}.
         </p>
 
         <div class="status-box">
