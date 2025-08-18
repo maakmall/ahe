@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
 use App\Models\Siswa;
-use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -18,7 +17,7 @@ class DashboardController extends Controller
 
         return view('dashboard.index', [
             'title' => 'Dashboard',
-            'quote' => Inspiring::quotes()->random(),
+            'quote' => 'Ahe Cabang Warnasari',
             'student' => $student->count(),
             'activeStudent' => $student->where('status', 'Aktif')->count(),
             'inactiveStudent' => $student->where('status', 'Non Aktif')->count(),
